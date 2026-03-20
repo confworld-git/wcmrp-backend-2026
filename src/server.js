@@ -27,7 +27,8 @@ const allowedOrigins = [
   "http://localhost:30005",
   "https://backend.wcmrp.com",
   "https://wcmrp.com",
-  "http://wcmrp.com"
+  "http://wcmrp.com",
+  "https://wcmrp.infinityuniquers.com/"
 ];
 
 server.use(cors({
