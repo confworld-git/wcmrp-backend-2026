@@ -23,7 +23,6 @@ export const enquiry_Create = async (req, res) => {
       "New Enquiry from WCMRP 2026",
       enquiry_email(enquiry),
       null,
-      "webdeveloper.confworld@gmail.com"
     );
     res.status(201).json({ message: "Enquiry Submit successfully" });
   } catch (error) {

@@ -36,7 +36,6 @@ export const CommitteeMember_Create = async (req, res) => {
       "New Committee Member from WCMRP 2026",
       committee_member_email(committeeMember),
       attachment,
-      "webdeveloper.confworld@gmail.com"
     );
     res.status(201).json({
       message: "Form Submitted successfully",

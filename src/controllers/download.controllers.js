@@ -20,7 +20,6 @@ export const download_Create = async (req, res) => {
       "New Brochure Download from WCMRP-2026",
       download_email(download),
       null,
-      "webdeveloper.confworld@gmail.com"
     );
     res.status(201).json({ message: "Download File successfully" });
   } catch (err) {

@@ -57,18 +57,39 @@ export const paper_submission_Create = async (req, res) => {
       "New Paper Submission from WCMRP 2026",
       paper_sobmission_lead(data),
       attachment,
-      "webdeveloper.confworld@gmail.com"
     );
     // replay mail
     mail(
       "New Paper Submission from WCMRP 2026",
       paper_sobmission_replay(data),
       null,
-      data.correspondingEmail
+      data.correspondingEmail,
     );
     res.status(201).json({ message: "Paper Submitted successfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Error creating paper submission" });
   }
+};
+
+const sendEmailToAdmin = async (subject, htmlContent, attachment) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST, port: process.env.SMTP_PORT, secure: false,
+      auth: { user: process.env.ADMIN_MAIL, pass: process.env.ADMIN_PASS },
+    });
+    await transporter.sendMail({ from: process.env.ADMIN_MAIL, to: process.env.ADMIN_MAIL, subject, html: htmlContent, attachments: attachment });
+    console.log("Email sent to admin:", process.env.ADMIN_MAIL);
+  } catch (error) { console.error("Error sending email to admin:", error); }
+};
+
+const sendEmailToUser = async (subject, htmlContent, Email) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST, port: process.env.SMTP_PORT, secure: false,
+      auth: { user: process.env.ADMIN_MAIL, pass: process.env.ADMIN_PASS },
+    });
+    await transporter.sendMail({ from: process.env.ADMIN_MAIL, to: Email, subject, html: htmlContent });
+    console.log("Email sent to User:", Email);
+  } catch (error) { console.error("Error sending email to User:", error); }
 };
